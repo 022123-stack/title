@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>社区头衔后台管理 Demo</title>
+<style>
+:root{--bg:#f6f8fc;--side:#101827;--panel:#fff;--line:#e6eaf2;--text:#172033;--muted:#667085;--brand:#7c3aed;--pink:#ec4899;--blue:#2563eb;--green:#16a34a;--red:#ef4444;--gold:#b7791f;--shadow:0 16px 42px rgba(15,23,42,.09);--r:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif}.app{display:flex;min-height:100vh}.side{width:248px;background:var(--side);color:#cbd5e1;padding:22px 16px;position:fixed;inset:0 auto 0 0}.brand{display:flex;gap:12px;align-items:center;color:#fff;font-weight:900;font-size:18px;margin-bottom:28px;padding:0 8px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--pink));display:grid;place-items:center}.nav-title{font-size:12px;color:#64748b;margin:18px 8px 10px}.nav{display:flex;flex-direction:column;gap:8px}.nav button{border:0;background:transparent;color:#cbd5e1;text-align:left;padding:13px 12px;border-radius:13px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center}.nav button.active{background:linear-gradient(90deg,rgba(124,58,237,.32),rgba(236,72,153,.12));color:#fff}.nav button:hover{background:#1f2937;color:#fff}.main{margin-left:248px;width:calc(100% - 248px);padding:26px 30px 54px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.topbar h1{margin:0 0 6px;font-size:26px}.sub{font-size:13px;color:var(--muted)}.admin{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#f472b6)}.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 26px rgba(15,23,42,.05);overflow:hidden;margin-bottom:18px}.panel-h{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-h h2{margin:0;font-size:17px}.panel-b{padding:18px 20px}.filters{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr auto;gap:12px;align-items:end}.filters.user{grid-template-columns:1.6fr 1fr auto}.field label{display:block;font-size:12px;color:#475569;margin-bottom:7px;font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--text);padding:11px 12px;font-size:14px;outline:none}.field textarea{min-height:86px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(124,58,237,.10)}.field input:disabled,.field select:disabled{background:#f8fafc;color:#94a3b8;cursor:not-allowed}.btn{border:0;border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:800;font-size:14px;background:#eef2ff;color:#4338ca;display:inline-flex;align-items:center;gap:7px}.btn.primary{background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff}.btn.dark{background:#111827;color:#fff}.btn.gray{background:#f3f4f6;color:#374151}.btn.red{background:#fee2e2;color:#dc2626}.btn:active{transform:translateY(1px)}.icon-btn{width:42px;height:42px;border-radius:14px;border:0;cursor:pointer;background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff;display:grid;place-items:center;font-size:19px;box-shadow:0 10px 22px rgba(124,58,237,.25)}table{width:100%;border-collapse:collapse}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:13px}th{background:#f8fafc;color:#475569;font-weight:850}tr:hover td{background:#fcfcff}.title-cell{display:flex;align-items:center;gap:10px}.title-img{width:58px;height:32px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;display:grid;place-items:center;color:#7c3aed;font-size:12px;font-weight:850;overflow:hidden}.title-img img{width:100%;height:100%;object-fit:cover}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:850;white-space:nowrap}.pill.online{background:#dcfce7;color:#15803d}.pill.draft{background:#f3f4f6;color:#4b5563}.pill.offline{background:#fee2e2;color:#dc2626}.pill.auto{background:#ede9fe;color:#6d28d9}.pill.manual{background:#e0f2fe;color:#0369a1}.pill.official{background:#fef3c7;color:#b45309}.pill.current{background:#ecfdf5;color:#047857}.ops{display:flex;gap:8px;flex-wrap:wrap}.mini{padding:7px 9px;font-size:12px;border-radius:9px}.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:20;align-items:center;justify-content:center;padding:24px}.modal-mask.show{display:flex}.modal{width:min(1000px,96vw);max-height:92vh;background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}.modal.small{width:min(820px,94vw)}.modal-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-h h3{margin:0;font-size:19px}.close{border:0;background:#f3f4f6;width:34px;height:34px;border-radius:10px;font-size:20px;cursor:pointer;color:#374151}.modal-b{padding:20px 22px;overflow:auto}.modal-f{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}.config-card{border:1px solid var(--line);border-radius:15px;background:#fff;margin-bottom:16px;overflow:hidden}.ch{padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:850;font-size:14px}.cb{padding:16px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid.three{grid-template-columns:repeat(3,1fr)}.upload{border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b}.radio-row{display:flex;gap:10px;flex-wrap:wrap}.radio-card{border:1px solid var(--line);border-radius:13px;padding:12px 14px;cursor:pointer;min-width:150px;background:#fff}.radio-card input{margin-right:8px}.radio-card:has(input:checked){border-color:#8b5cf6;background:#f5f3ff;box-shadow:0 0 0 3px rgba(124,58,237,.08)}.condition-box{display:none;border:1px solid #ddd6fe;background:#fbf8ff;border-radius:16px;padding:16px;margin-top:16px}.condition-box.show{display:block}.condition-row{display:grid;grid-template-columns:1.1fr .8fr .8fr 1fr 1.2fr auto;gap:10px;align-items:end;margin-bottom:10px}.hint{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:13px;padding:12px;color:#64748b;font-size:13px;line-height:1.6}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px}.user-layout{display:grid;grid-template-columns:360px 1fr;gap:18px}.user-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px}.user-head{display:flex;gap:12px;align-items:center}.uavatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#c4b5fd,#93c5fd)}.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.kv div{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.kv b{display:block;font-size:18px}.tabs{display:flex;gap:8px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;cursor:pointer;font-weight:800;color:#475569}.tab.active{background:#ede9fe;color:#6d28d9;border-color:#ddd6fe}.toast{position:fixed;right:28px;bottom:28px;background:#111827;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:50}.toast.show{display:block;animation:fade 2s ease forwards}
+.user-compact{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 8px 18px rgba(15,23,42,.04)}
+.user-compact-left{display:flex;align-items:center;gap:12px;min-width:260px}.user-compact .uavatar{width:42px;height:42px}.user-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.info-chip{border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:7px 11px;font-size:12px;color:#475569}.info-chip b{color:#111827;margin-left:4px}.list-focus{border:2px solid #ede9fe;box-shadow:0 14px 32px rgba(124,58,237,.08)}
+@keyframes fade{0%,85%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(8px)}}
+@media(max-width:1100px){.side{position:static;width:100%;height:auto}.app{display:block}.main{margin-left:0;width:100%}.filters,.filters.user,.form-grid,.form-grid.three,.condition-row,.user-layout{grid-template-columns:1fr}.user-compact{align-items:flex-start;flex-direction:column}.user-tags{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="logo">T</div><div>社区头衔后台</div></div>
+    <div class="nav-title">配置管理</div>
+    <div class="nav">
+      <button class="active" data-page="titles">🏷️ 头衔列表</button>
+      <button data-page="grant">🎁 指定用户发放</button>
+      <button data-page="users">👤 用户头衔查询</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div><h1 id="pageTitle">头衔列表</h1><div class="sub" id="pageSub">统一管理社区头衔的新增、编辑、上下架、获取方式与有效期</div></div>
+      <div class="admin"><div class="avatar"></div><span>运营管理员</span></div>
+    </div>
+
+    <section id="titles" class="page active">
+      <div class="panel">
+        <div class="panel-h"><h2>筛选查询</h2><button class="btn primary" onclick="openTitleModal('add')">+ 新增头衔</button></div>
+        <div class="panel-b">
+          <div class="filters">
+            <div class="field"><label>头衔名称 / ID</label><input placeholder="搜索 Drama Expert / 10001"></div>
+            <div class="field"><label>获取方式</label><select><option>全部</option><option>自动解锁</option><option>手动发放</option><option>官方头衔</option></select></div>
+            <div class="field"><label>上架状态</label><select><option>全部</option><option>上架</option><option>草稿</option><option>下架</option></select></div>
+            <div class="field"><label>有效期</label><select><option>全部</option><option>永久</option></select></div>
+            <button class="btn dark" onclick="toast('已按当前条件查询')">查询</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>头衔列表</h2><div class="sub">新增/编辑均通过弹窗完成</div></div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>头衔</th><th>ID</th><th>获取方式</th><th>解锁条件</th><th>有效期</th><th>权重</th><th>状态</th><th>已获得</th><th>当前佩戴</th><th>操作</th></tr></thead>
+            <tbody id="titleRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="grant" class="page">
+      <div class="panel">
+        <div class="panel-h">
+          <div><h2>已发放列表</h2><div class="sub">默认展示历史发放批次，点击右侧图标发放新头衔</div></div>
+          <button class="icon-btn" title="发放头衔" onclick="openGrantModal()">🎁</button>
+        </div>
+        <div class="panel-b">
+          <div class="filters" style="grid-template-columns:1.4fr 1fr 1fr 1fr auto">
+            <div class="field"><label>批次 ID / 头衔 / 用户 ID</label><input placeholder="搜索 G20260611001 / High Roller / UID"></div>
+            <div class="field"><label>发放状态</label><select><option>全部</option><option>已完成</option><option>处理中</option><option>部分失败</option><option>已回收</option></select></div>
+            <div class="field"><label>发放方式</label><select><option>全部</option><option>单用户</option><option>批量 UID</option><option>上传名单</option></select></div>
+            <div class="field"><label>时间范围</label><input type="date"></div>
+            <button class="btn dark" onclick="toast('已查询发放批次')">查询</button>
+          </div>
+        </div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>批次 ID</th><th>头衔</th><th>发放对象</th><th>成功/失败</th><th>有效期</th><th>操作人</th><th>发放时间</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody id="grantRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="users" class="page">
+      <div class="panel">
+        <div class="panel-h"><h2>用户头衔查询</h2><div class="sub">用于客服/运营排查用户头衔持有状态</div></div>
+        <div class="panel-b">
+          <div class="filters user">
+            <div class="field"><label>用户 ID / 昵称</label><input value="664194933" placeholder="输入 UID 或昵称"></div>
+            <div class="field"><label>持有状态</label><select><option>全部</option><option>Current</option><option>Owned</option></select></div>
+            <button class="btn dark" onclick="toast('已查询用户头衔')">查询</button>
+          </div>
+        </div>
+      </div>
+      <div class="user-compact">
+        <div class="user-compact-left"><div class="uavatar"></div><div><b>Tweeneer</b><div class="sub">UID：664194933 · Global</div></div></div>
+        <div class="user-tags"><span class="info-chip">状态 <b>正常</b></span><span class="info-chip">社区等级 <b>Lv.5</b></span><span class="info-chip">粉丝数 <b>612</b></span><span class="info-chip">持有头衔 <b>3</b></span></div>
+      </div>
+      <div class="panel list-focus">
+        <div class="panel-h"><h2>用户头衔列表</h2></div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>头衔</th><th>状态</th><th>获取方式</th><th>获取时间</th><th>有效期</th><th>来源/原因</th><th>操作</th></tr></thead>
+            <tbody id="userTitleRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-mask" id="titleModal">
+  <div class="modal">
+    <div class="modal-h"><h3 id="titleModalName">新增头衔</h3><button class="close" onclick="closeTitleModal()">×</button></div>
+    <div class="modal-b">
+      <div class="config-card"><div class="ch">1. 基础信息</div><div class="cb">
+        <div class="form-grid"><div class="field"><label>头衔名称</label><input id="titleName" placeholder="如 Drama Expert"></div><div class="field"><label>排序权重</label><input id="sortWeight" type="number" value="100"></div></div><br>
+        <div class="form-grid"><div class="field"><label>头衔图片</label><div class="upload"><input type="file" accept="image/*"><br><span>手动上传头衔图片，支持 PNG / JPG / WebP</span></div></div><div class="field"><label>头衔描述</label><textarea id="titleDesc" placeholder="用于后台识别和用户端详情说明"></textarea></div></div>
+      </div></div>
+      <div class="config-card"><div class="ch">2. 获取方式</div><div class="cb">
+        <div class="radio-row"><label class="radio-card"><input type="radio" name="method" value="auto" checked onchange="toggleConditions()">自动解锁</label><label class="radio-card"><input type="radio" name="method" value="manual" onchange="toggleConditions()">手动发放</label><label class="radio-card"><input type="radio" name="method" value="official" onchange="toggleConditions()">官方头衔</label></div>
+        <div class="condition-box show" id="conditionBox"><div class="toolbar" style="margin-bottom:12px"><b>自动解锁条件配置</b><button class="btn gray mini" id="addConditionBtn" onclick="addCondition()">+ 添加条件</button></div>
+          <div class="form-grid three" style="margin-bottom:12px"><div class="field"><label>条件组合</label><select id="conditionMode" onchange="applyConditionMode()"><option value="single">单条件</option><option value="and">全部满足 AND</option></select></div><div class="field"><label>解锁后是否通知</label><select><option>通知用户</option><option>不通知</option></select></div><div class="field"><label>无佩戴头衔时是否自动佩戴</label><select><option>是</option><option>否</option></select></div></div>
+          <div id="conditionRows"></div><div class="hint">只有获取方式为「自动解锁」时需要配置解锁条件；「手动发放」和「官方头衔」均不展示该配置。</div>
+        </div>
+      </div></div>
+      <div class="config-card"><div class="ch">3. 有效期与状态</div><div class="cb">
+        <div id="addStatusBlock">
+          <div class="form-grid">
+            <div class="field"><label>有效期类型</label><select disabled title="当前仅支持永久有效"><option>永久有效</option></select></div>
+            <div class="field"><label>头衔状态</label><select id="newTitleStatus"><option selected>上架</option><option>草稿</option></select></div>
+          </div>
+          <div class="hint" style="margin-top:12px">新增头衔默认上架；选择草稿时仅后台保留，不在用户端 Title Wardrobe 中展示，也不会触发自动解锁。</div>
+        </div>
+        <div id="editStatusBlock" style="display:none">
+          <div class="form-grid three">
+            <div class="field"><label>有效期类型</label><select disabled title="当前仅支持永久有效"><option>永久有效</option></select></div>
+            <div class="field"><label>当前状态</label><input id="editCurrentStatus" value="上架" disabled></div>
+            <div class="field"><label>状态调整</label><select id="editStatusAction" onchange="toggleEditOffShelf()"><option value="keep">保持当前状态</option><option value="online">上架</option><option value="offline">下架</option></select></div>
+          </div>
+          <div id="editOffShelfBlock" style="display:none;margin-top:14px">
+            <div class="form-grid">
+              <div class="field"><label>下架处理</label><select><option>仅停止新增获取，已持有用户继续保留</option><option>下架并回收，已持有用户同步失去该头衔</option></select></div>
+              <div class="field"><label>操作原因</label><input placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></div>
+            </div>
+            <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">下架会影响用户端展示和后续获取；若选择“下架并回收”，当前佩戴该头衔的用户将同步取消展示。</div>
+          </div>
+          <div class="hint" style="margin-top:12px">编辑已上线头衔时，优先支持调整名称、图片、描述、排序等展示信息；涉及上下架状态变更时，需通过状态调整完成，便于权限控制和操作追溯。</div>
+        </div>
+      </div></div>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeTitleModal()">取消</button><button class="btn primary" onclick="saveTitle()">保存</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="grantModal">
+  <div class="modal small">
+    <div class="modal-h"><h3>指定用户发放</h3><button class="close" onclick="closeGrantModal()">×</button></div>
+    <div class="modal-b">
+      <div class="config-card"><div class="ch">1. 发放内容</div><div class="cb"><div class="form-grid"><div class="field"><label>选择头衔</label><select id="grantTitleSelect"></select></div><div class="field"><label>有效期</label><select id="grantValidity" disabled title="当前仅支持永久有效"><option>永久有效</option></select></div></div></div></div>
+      <div class="config-card"><div class="ch">2. 发放对象</div><div class="cb"><div class="form-grid"><div class="field"><label>对象类型</label><select id="grantObjectType"><option>单用户 UID</option><option>批量 UID</option><option>上传名单文件</option></select></div><div class="field"><label>发放规则</label><input value="仅发放头衔，不自动佩戴" disabled></div></div><br><div class="field"><label>用户 ID / 批量 UID</label><textarea id="grantUids" placeholder="输入用户ID，多个用户请换行"></textarea></div></div></div>
+      <div class="config-card"><div class="ch">3. 发放说明</div><div class="cb"><div class="field"><label>发放原因</label><textarea id="grantReason" placeholder="必填，例如：活动奖励 / 官方认证 / 运营补发"></textarea></div></div></div>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeGrantModal()">取消</button><button class="btn primary" onclick="submitGrant()">确认发放</button></div>
+  </div>
+</div>
+
+
+<div class="modal-mask" id="grantDetailModal">
+  <div class="modal small">
+    <div class="modal-h"><h3 id="grantDetailTitle">发放详情</h3><button class="close" onclick="closeGrantDetail()">×</button></div>
+    <div class="modal-b">
+      <div class="config-card"><div class="ch">发放批次信息</div><div class="cb">
+        <div class="form-grid three"><div class="field"><label>批次 ID</label><input id="detailBatch" disabled></div><div class="field"><label>头衔</label><input id="detailTitle" disabled></div><div class="field"><label>发放状态</label><input id="detailStatus" disabled></div></div>
+      </div></div>
+      <div class="config-card"><div class="ch">发放用户名单</div><div style="overflow:auto">
+        <table>
+          <thead><tr><th>UID</th><th>昵称</th><th>发放结果</th><th>失败原因</th><th>发放时间</th></tr></thead>
+          <tbody id="grantUserRows"></tbody>
+        </table>
+      </div></div>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeGrantDetail()">关闭</button></div>
+  </div>
+</div>
+
+
+
+<div class="modal-mask" id="offShelfModal">
+  <div class="modal small" style="max-width:620px">
+    <div class="modal-h"><h3>确认下架头衔</h3><button class="close" onclick="closeOffShelfModal()">×</button></div>
+    <div class="modal-b">
+      <div class="config-card"><div class="ch">下架确认</div><div class="cb">
+        <div class="field"><label>下架头衔</label><input id="offShelfTitleName" disabled></div><br>
+        <div class="field"><label>下架处理</label><select id="offShelfPolicy"><option>仅停止新增获取，已持有用户继续保留</option><option>下架并回收，已持有用户同步失去该头衔</option></select></div><br>
+        <div class="field"><label>操作原因</label><textarea id="offShelfReason" placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></textarea></div>
+        <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">该操作与编辑头衔弹窗中的下架逻辑一致：必须选择下架处理方式，并填写操作原因后确认。</div>
+      </div></div>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeOffShelfModal()">取消</button><button class="btn red" onclick="confirmOffShelf()">确认下架</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="recycleConfirmModal">
+  <div class="modal small" style="max-width:520px">
+    <div class="modal-h"><h3>确认回收头衔</h3><button class="close" onclick="closeRecycleConfirm()">×</button></div>
+    <div class="modal-b">
+      <div class="hint" style="border-color:#fecaca;background:#fff7f7;color:#7f1d1d">
+        回收后，该用户将失去 <b id="recycleTitleName">该头衔</b>，如该头衔为当前佩戴状态，前端资料卡、帖子列表、评论区展示将同步移除。该操作不可直接撤销。
+      </div>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeRecycleConfirm()">取消</button><button class="btn red" onclick="confirmRecycle()">确认回收</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const pageMeta={
+  titles:['头衔列表','统一管理社区头衔的新增、编辑、上下架、获取方式与有效期'],
+  grant:['指定用户发放','默认展示已发放列表，支持发放新头衔'],
+  users:['用户头衔查询','查询用户持有头衔状态']
+};
+let titleModalMode='add';
+let editingTitleId=null;
+let nextTitleId=10007;
+let nextGrantNo=12;
+let titles=[
+ {name:'Drama Expert',id:'10001',method:'自动解锁',methodClass:'auto',cond:'观看剧集数 ≥ 30',valid:'永久有效',status:'上架',own:'3,126',wear:'1,482',weight:200,desc:'观看成长类头衔'},
+ {name:'High Roller',id:'10002',method:'手动发放',methodClass:'manual',cond:'—',valid:'永久有效',status:'上架',own:'842',wear:'316',weight:180,desc:'高价值用户荣誉头衔'},
+ {name:'Official Creator',id:'10003',method:'官方头衔',methodClass:'official',cond:'—',valid:'永久有效',status:'上架',own:'26',wear:'19',weight:160,desc:'官方认证创作者'},
+ {name:'Superfan',id:'10004',method:'自动解锁',methodClass:'auto',cond:'获得点赞数 ≥ 100',valid:'永久有效',status:'上架',own:'1,207',wear:'498',weight:120,desc:'社区互动类头衔'},
+ {name:'Rising Star',id:'10005',method:'自动解锁',methodClass:'auto',cond:'社区等级 ≥ Lv.5',valid:'永久有效',status:'草稿',own:'-',wear:'-',weight:90,desc:'社区成长头衔'},
+ {name:'Event King',id:'10006',method:'手动发放',methodClass:'manual',cond:'—',valid:'永久有效',status:'下架',own:'0',wear:'0',weight:60,desc:'活动限定头衔'}
+];
+let grantRecords=[
+ {batch:'G20260611001',title:'High Roller',target:'批量 UID',success:498,fail:2,valid:'永久有效',operator:'admin',time:'2026-06-11 10:00',status:'已完成'},
+ {batch:'G20260610008',title:'Official Creator',target:'单用户 UID',success:1,fail:0,valid:'永久有效',operator:'admin',time:'2026-06-10 18:22',status:'已完成'},
+ {batch:'G20260608003',title:'Superfan',target:'上传名单文件',success:73,fail:4,valid:'永久有效',operator:'ops_01',time:'2026-06-08 12:30',status:'部分失败'}
+];
+let grantDetails={
+ 'G20260611001':{title:'High Roller',status:'已完成',users:[['664194933','Tweeneer','成功','—','2026-06-11 10:00'],['664194934','Maya','成功','—','2026-06-11 10:00'],['664194935','Aarav','失败','用户不存在','2026-06-11 10:00'],['664194936','Palak','成功','—','2026-06-11 10:00']]},
+ 'G20260610008':{title:'Official Creator',status:'已完成',users:[['774200128','Official Riya','成功','—','2026-06-10 18:22']]},
+ 'G20260608003':{title:'Superfan',status:'部分失败',users:[['884100001','Vihaan','成功','—','2026-06-08 12:30'],['884100002','Aisha','成功','—','2026-06-08 12:30'],['884100003','Guest_82','失败','账号封禁','2026-06-08 12:30'],['884100004','Narzary99','成功','—','2026-06-08 12:30']]}
+};
+let userTitles=[
+ {name:'Drama Expert',state:'Current',method:'自动解锁',time:'2026-06-10 10:12',valid:'永久有效',source:'观看剧集数 ≥ 30'},
+ {name:'High Roller',state:'Owned',method:'手动发放',time:'2026-06-08 18:02',valid:'永久有效',source:'充值活动奖励'},
+ {name:'Official Creator',state:'Owned',method:'官方头衔',time:'2026-06-01 09:20',valid:'永久有效',source:'官方认证'}
+];
+function sortTitles(){titles.sort((a,b)=>(Number(b.weight)||0)-(Number(a.weight)||0)||String(b.id).localeCompare(String(a.id)))}
+function renderTitles(){
+  sortTitles();
+  document.getElementById('titleRows').innerHTML=titles.map(t=>{
+    const statusClass=t.status==='上架'?'online':t.status==='草稿'?'draft':'offline';
+    const statusAction=t.status==='上架'
+      ? `<button class="btn mini red" onclick="openOffShelfModal('${t.id}')">下架</button>`
+      : `<button class="btn mini gray" onclick="onlineTitle('${t.id}')">上架</button>`;
+    return `<tr><td><div class="title-cell"><div class="title-img">图片</div><div><b>${t.name}</b><br><span class="sub">后台上传</span></div></div></td><td>${t.id}</td><td><span class="pill ${t.methodClass}">${t.method}</span></td><td>${t.cond}</td><td>${t.valid}</td><td><b>${t.weight}</b></td><td><span class="pill ${statusClass}">${t.status}</span></td><td>${t.own}</td><td>${t.wear}</td><td><div class="ops"><button class="btn mini gray" onclick="openTitleModal('edit','${t.id}')">编辑</button>${statusAction}</div></td></tr>`
+  }).join('');
+  populateGrantTitles();
+}
+function renderGrantRows(){
+  document.getElementById('grantRows').innerHTML=grantRecords.map(r=>{
+    const cls=r.status==='已完成'?'online':r.status==='部分失败'?'draft':'offline';
+    return `<tr><td>${r.batch}</td><td>${r.title}</td><td>${r.target}</td><td>${r.success} / ${r.fail}</td><td>${r.valid}</td><td>${r.operator}</td><td>${r.time}</td><td><span class="pill ${cls}">${r.status}</span></td><td><button class="btn mini gray" onclick="openGrantDetail('${r.batch}')">详情</button></td></tr>`
+  }).join('');
+}
+function renderUserTitles(){
+  const tbody=document.getElementById('userTitleRows');
+  if(!tbody) return;
+  tbody.innerHTML=userTitles.map(t=>`<tr data-title="${t.name}"><td><div class="title-cell"><div class="title-img">图</div><b>${t.name}</b></div></td><td><span class="pill ${t.state==='Current'?'current':'online'}">${t.state}</span></td><td>${t.method}</td><td>${t.time}</td><td>${t.valid}</td><td>${t.source}</td><td><button class="btn mini red" onclick="openRecycleConfirm('${t.name}')">回收</button></td></tr>`).join('');
+  const count=document.querySelector('.user-tags .info-chip:last-child b');
+  if(count) count.textContent=userTitles.length;
+}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('pageTitle').textContent=pageMeta[id][0];document.getElementById('pageSub').textContent=pageMeta[id][1];window.scrollTo(0,0)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
+function methodClass(method){return method==='自动解锁'?'auto':method==='手动发放'?'manual':'official'}
+function getSelectedMethod(){const v=document.querySelector('input[name="method"]:checked').value;return v==='auto'?'自动解锁':v==='manual'?'手动发放':'官方头衔'}
+function setSelectedMethod(method){const value=method==='自动解锁'?'auto':method==='手动发放'?'manual':'official';const radio=document.querySelector(`input[name="method"][value="${value}"]`);if(radio) radio.checked=true;toggleConditions()}
+function resetTitleForm(){
+  document.getElementById('titleName').value='';
+  document.getElementById('sortWeight').value='100';
+  document.getElementById('titleDesc').value='';
+  document.getElementById('newTitleStatus').value='上架';
+  setSelectedMethod('自动解锁');
+  document.getElementById('conditionMode').value='single';
+  document.getElementById('conditionRows').innerHTML=conditionRow('发帖数量','10','历史累计');
+  applyConditionMode();
+}
+function fillConditionsFromCond(cond){
+  const rows=document.getElementById('conditionRows');
+  rows.innerHTML='';
+  if(!cond||cond==='—'){rows.innerHTML=conditionRow('发帖数量','10','历史累计');return}
+  const match=cond.match(/^(.+?)\s*(≥|=|≤)\s*(.+)$/);
+  if(match){rows.innerHTML=conditionRow(match[1].trim(),match[3].trim(),'历史累计')}else{rows.innerHTML=conditionRow('发帖数量','10','历史累计')}
+}
+function openTitleModal(type,id=''){
+  titleModalMode=type;
+  editingTitleId=id||null;
+  const isAdd=type==='add';
+  document.getElementById('titleModalName').textContent=isAdd?'新增头衔':'编辑头衔';
+  if(isAdd){resetTitleForm()}else{
+    const target=titles.find(t=>t.id===id);
+    if(target){
+      document.getElementById('titleName').value=target.name;
+      document.getElementById('sortWeight').value=target.weight;
+      document.getElementById('titleDesc').value=target.desc||'';
+      setSelectedMethod(target.method);
+      fillConditionsFromCond(target.cond);
+      document.getElementById('conditionMode').value='single';
+      applyConditionMode();
+      const status=target.status||'上架';
+      document.getElementById('editCurrentStatus').value=status;
+      setEditStatusActionOptions(status);
+      document.getElementById('editStatusAction').value='keep';
+      toggleEditOffShelf();
+    }
+  }
+  document.getElementById('addStatusBlock').style.display=isAdd?'block':'none';
+  document.getElementById('editStatusBlock').style.display=isAdd?'none':'block';
+  document.getElementById('titleModal').classList.add('show');
+  toggleConditions();applyConditionMode();
+}
+function setEditStatusActionOptions(status){
+  const select=document.getElementById('editStatusAction');
+  let opts='<option value="keep">保持当前状态</option>';
+  if(status==='上架') opts+='<option value="offline">下架</option>';
+  else opts+='<option value="online">上架</option>';
+  select.innerHTML=opts;
+}
+function closeTitleModal(){document.getElementById('titleModal').classList.remove('show')}
+function buildConditionSummary(){
+  if(getSelectedMethod()!=='自动解锁') return '—';
+  const row=document.querySelector('#conditionRows .condition-row');
+  if(!row) return '—';
+  const selects=row.querySelectorAll('select');
+  const type=selects[0]?.value||'发帖数量';
+  const op=selects[1]?.value||'≥';
+  const val=row.querySelector('input')?.value||'10';
+  return `${type} ${op} ${val}`;
+}
+function validateTitleForm(){
+  const name=document.getElementById('titleName').value.trim();
+  const weight=document.getElementById('sortWeight').value.trim();
+  if(!name){toast('请填写头衔名称');return false}
+  if(!weight){toast('请填写排序权重');return false}
+  if(getSelectedMethod()==='自动解锁'&&!document.querySelector('#conditionRows .condition-row')){toast('请配置自动解锁条件');return false}
+  if(titleModalMode==='edit'&&document.getElementById('editStatusAction').value==='offline'){
+    const reason=document.querySelector('#editOffShelfBlock input')?.value.trim();
+    if(!reason){toast('请填写操作原因');return false}
+  }
+  return true;
+}
+function saveTitle(){
+  if(!validateTitleForm()) return;
+  const method=getSelectedMethod();
+  const payload={
+    name:document.getElementById('titleName').value.trim(),
+    method,
+    methodClass:methodClass(method),
+    cond:buildConditionSummary(),
+    valid:'永久有效',
+    weight:Number(document.getElementById('sortWeight').value)||0,
+    desc:document.getElementById('titleDesc').value.trim(),
+    own:'0',wear:'0'
+  };
+  if(titleModalMode==='add'){
+    payload.id=String(nextTitleId++);
+    payload.status=document.getElementById('newTitleStatus').value;
+    titles.push(payload);
+    closeTitleModal();renderTitles();toast('新增成功，头衔列表已生成新配置');
+  }else{
+    const target=titles.find(t=>t.id===editingTitleId);
+    if(target){
+      const action=document.getElementById('editStatusAction').value;
+      const newStatus=action==='online'?'上架':action==='offline'?'下架':target.status;
+      Object.assign(target,payload,{id:target.id,status:newStatus,own:target.own,wear:newStatus==='下架'&&document.querySelector('#editOffShelfBlock select')?.selectedIndex===1?'0':target.wear});
+    }
+    closeTitleModal();renderTitles();toast('编辑成功，列表内容已同步更新');
+  }
+}
+function onlineTitle(id){const t=titles.find(x=>x.id===id);if(t){t.status='上架';renderTitles();toast('已上架 '+t.name)}}
+function openGrantModal(){
+  populateGrantTitles();
+  document.getElementById('grantObjectType').value='单用户 UID';
+  document.getElementById('grantUids').value='';
+  document.getElementById('grantReason').value='';
+  document.getElementById('grantModal').classList.add('show')
+}
+function closeGrantModal(){document.getElementById('grantModal').classList.remove('show')}
+function populateGrantTitles(){
+  const s=document.getElementById('grantTitleSelect');
+  if(!s) return;
+  const options=titles.filter(t=>t.status==='上架'&&(t.method==='手动发放'||t.method==='官方头衔'||t.method==='自动解锁')).map(t=>`<option>${t.name}</option>`).join('');
+  s.innerHTML=options||'<option>暂无可发放头衔</option>';
+}
+function nowTime(){const d=new Date();const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`}
+function submitGrant(){
+  const title=document.getElementById('grantTitleSelect').value;
+  const uids=document.getElementById('grantUids').value.trim().split(/\s+/).filter(Boolean);
+  const reason=document.getElementById('grantReason').value.trim();
+  if(!title||title==='暂无可发放头衔'){toast('请选择头衔');return}
+  if(!uids.length){toast('请填写用户 ID');return}
+  if(!reason){toast('请填写发放原因');return}
+  const batch='G'+new Date().toISOString().slice(0,10).replace(/-/g,'')+String(nextGrantNo++).padStart(3,'0');
+  const time=nowTime();
+  const record={batch,title,target:document.getElementById('grantObjectType').value,success:uids.length,fail:0,valid:'永久有效',operator:'admin',time,status:'已完成'};
+  grantRecords.unshift(record);
+  grantDetails[batch]={title,status:'已完成',users:uids.map((uid,i)=>[uid,`User_${uid.slice(-4)}`,'成功','—',time])};
+  const t=titles.find(x=>x.name===title);
+  if(t){const old=String(t.own).replace(/,/g,'');const n=isNaN(Number(old))?0:Number(old);t.own=(n+uids.length).toLocaleString('en-US')}
+  closeGrantModal();renderGrantRows();renderTitles();toast('发放批次已创建，已发放列表已新增记录')
+}
+function openGrantDetail(batch){const d=grantDetails[batch]||grantDetails['G20260611001'];document.getElementById('detailBatch').value=batch;document.getElementById('detailTitle').value=d.title;document.getElementById('detailStatus').value=d.status;document.getElementById('grantDetailTitle').textContent='发放详情 · '+batch;document.getElementById('grantUserRows').innerHTML=d.users.map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td><td><span class="pill ${u[2]==='成功'?'online':'offline'}">${u[2]}</span></td><td>${u[3]}</td><td>${u[4]}</td></tr>`).join('');document.getElementById('grantDetailModal').classList.add('show')}
+function closeGrantDetail(){document.getElementById('grantDetailModal').classList.remove('show')}
+function toggleConditions(){const v=document.querySelector('input[name="method"]:checked').value;document.getElementById('conditionBox').classList.toggle('show',v==='auto')}
+const conditionTypes=['发帖数量','获得点赞数量','充值次数','累计登录天数','社区等级','短剧勋章数量','观看剧集数量','消耗 Beans'];
+function conditionRow(type='发帖数量',value='10',period='历史累计'){
+  if(!conditionTypes.includes(type)) type='发帖数量';
+  return `<div class="condition-row"><div class="field"><label>条件类型</label><select>${conditionTypes.map(x=>`<option ${x===type?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>判断方式</label><select><option>≥</option><option>=</option><option>≤</option></select></div><div class="field"><label>目标值</label><input value="${value}"></div><div class="field"><label>统计周期</label><select><option ${period==='历史累计'?'selected':''}>历史累计</option><option ${period==='实时状态'?'selected':''}>实时状态</option><option>自然日</option><option>自然周</option><option>自然月</option><option>指定时间段</option></select></div><div class="field"><label>前端展示文案</label><input value="${type} ≥ ${value}"></div><button class="btn red mini condition-delete" onclick="this.closest('.condition-row').remove();applyConditionMode()">删除</button></div>`
+}
+function addCondition(){const mode=document.getElementById('conditionMode')?.value||'single';const rows=document.querySelectorAll('#conditionRows .condition-row').length;if(mode==='single'&&rows>=1){toast('单条件模式下仅允许配置 1 个条件');return}document.getElementById('conditionRows').insertAdjacentHTML('beforeend',conditionRow());applyConditionMode()}
+function applyConditionMode(){let mode=document.getElementById('conditionMode')?.value||'single';const box=document.getElementById('conditionRows');let rows=[...box.querySelectorAll('.condition-row')];if(mode==='single'&&rows.length>1){rows.slice(1).forEach(r=>r.remove())}rows=[...box.querySelectorAll('.condition-row')];if(rows.length===0){box.insertAdjacentHTML('beforeend',conditionRow())}document.getElementById('addConditionBtn').style.display=mode==='single'?'none':'inline-flex';box.querySelectorAll('.condition-delete').forEach(btn=>btn.style.display=mode==='single'?'none':'inline-flex')}
+function toggleEditOffShelf(){const action=document.getElementById('editStatusAction')?.value;const block=document.getElementById('editOffShelfBlock');if(block) block.style.display=action==='offline'?'block':'none'}
+let pendingOffShelfId='';
+function openOffShelfModal(id){const t=titles.find(x=>x.id===id);pendingOffShelfId=id;document.getElementById('offShelfTitleName').value=t?t.name:id;document.getElementById('offShelfPolicy').selectedIndex=0;document.getElementById('offShelfReason').value='';document.getElementById('offShelfModal').classList.add('show')}
+function closeOffShelfModal(){document.getElementById('offShelfModal').classList.remove('show')}
+function confirmOffShelf(){const reason=document.getElementById('offShelfReason').value.trim();if(!reason){toast('请填写操作原因');return}const t=titles.find(x=>x.id===pendingOffShelfId);if(t){t.status='下架';if(document.getElementById('offShelfPolicy').selectedIndex===1){t.own='0';t.wear='0'}}closeOffShelfModal();renderTitles();toast('已下架，头衔列表已同步更新')}
+let pendingRecycleTitle='';
+function openRecycleConfirm(title){pendingRecycleTitle=title;document.getElementById('recycleTitleName').textContent=title;document.getElementById('recycleConfirmModal').classList.add('show')}
+function closeRecycleConfirm(){document.getElementById('recycleConfirmModal').classList.remove('show')}
+function confirmRecycle(){
+  userTitles=userTitles.filter(t=>t.name!==pendingRecycleTitle);
+  closeRecycleConfirm();renderUserTitles();toast('回收成功，用户头衔列表已同步移除')
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+renderTitles();renderGrantRows();renderUserTitles();
+document.getElementById('conditionRows').innerHTML=conditionRow('发帖数量','10','历史累计');applyConditionMode();
+</script>
+</body>
+</html>
