@@ -43,7 +43,7 @@
           <div class="filters" style="grid-template-columns:1.6fr 1fr 1fr auto">
             <div class="field"><label>头衔名称 / ID</label><input placeholder="搜索 Drama Expert / 10001"></div>
             <div class="field"><label>获取方式</label><select><option>全部</option><option>手动发放</option><option>官方头衔</option></select></div>
-            <div class="field"><label>上架状态</label><select><option>全部</option><option>上架</option><option>草稿</option><option>下架</option></select></div>
+            <div class="field"><label>上架状态</label><select><option>全部</option><option>上架</option><option>下架</option></select></div>
             <button class="btn dark" onclick="toast('已按当前条件查询')">查询</button>
           </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="panel-h"><h2>头衔列表</h2><div class="sub">新增/编辑均通过弹窗完成</div></div>
         <div style="overflow:auto">
           <table class="table-nowrap">
-            <thead><tr><th>头衔</th><th>ID</th><th>获取方式</th><th>有效期规则</th><th>权重</th><th>状态</th><th>已获得</th><th>当前佩戴</th><th>操作</th></tr></thead>
+            <thead><tr><th>头衔</th><th>ID</th><th>获取方式</th><th>权重</th><th>状态</th><th>已获得</th><th>当前佩戴</th><th>操作</th></tr></thead>
             <tbody id="titleRows"></tbody>
           </table>
         </div>
@@ -67,8 +67,8 @@
         </div>
         <div class="panel-b">
           <div class="filters" style="grid-template-columns:1.4fr 1fr 1fr 1fr auto">
-            <div class="field"><label>批次 ID / 头衔 / 用户 ID</label><input placeholder="搜索 G20260611001 / High Roller / UID"></div>
-            <div class="field"><label>发放状态</label><select><option>全部</option><option>已完成</option><option>处理中</option><option>部分失败</option><option>已回收</option></select></div>
+            <div class="field"><label>头衔ID</label><input placeholder="搜索头衔ID，如 10002"></div>
+            <div class="field"><label>发放状态</label><select><option>全部</option><option>已完成</option><option>部分失败</option></select></div>
             <div class="field"><label>发放方式</label><select><option>全部</option><option>单用户</option><option>批量 UID</option><option>上传名单</option></select></div>
             <div class="field"><label>时间范围</label><input type="date"></div>
             <button class="btn dark" onclick="toast('已查询发放批次')">查询</button>
@@ -76,7 +76,7 @@
         </div>
         <div style="overflow:auto">
           <table>
-            <thead><tr><th>批次 ID</th><th>头衔</th><th>发放对象</th><th>成功/失败</th><th>有效期</th><th>操作人</th><th>发放时间</th><th>状态</th><th>操作</th></tr></thead>
+            <thead><tr><th>批次 ID</th><th>头衔</th><th>发放对象</th><th>成功/失败</th><th>剩余有效期</th><th>操作人</th><th>发放时间</th><th>状态</th><th>操作</th></tr></thead>
             <tbody id="grantRows"></tbody>
           </table>
         </div>
@@ -85,25 +85,23 @@
 
     <section id="users" class="page">
       <div class="panel">
-        <div class="panel-h"><h2>用户头衔查询</h2><div class="sub">用于客服/运营排查用户头衔持有状态</div></div>
+        <div class="panel-h"><h2>用户头衔查询</h2><div class="sub">用于客服/运营排查用户头衔信息</div></div>
         <div class="panel-b">
-          <div class="filters user" style="grid-template-columns:1.6fr 1fr 1fr auto">
+          <div class="filters user" style="grid-template-columns:1.6fr auto">
             <div class="field"><label>用户 ID / 昵称</label><input value="664194933" placeholder="输入 UID 或昵称"></div>
-            <div class="field"><label>持有状态</label><select><option>全部</option><option>Current</option><option>Owned</option></select></div>
-            <div class="field"><label>获取方式</label><select><option>全部</option><option>手动发放</option><option>官方头衔</option></select></div>
             <button class="btn dark" onclick="toast('已查询用户头衔')">查询</button>
           </div>
         </div>
       </div>
       <div class="user-compact">
         <div class="user-compact-left"><div class="uavatar"></div><div><b>Tweeneer</b><div class="sub">UID：664194933 · Global</div></div></div>
-        <div class="user-tags"><span class="info-chip">状态 <b>正常</b></span><span class="info-chip">社区等级 <b>Lv.5</b></span><span class="info-chip">粉丝数 <b>612</b></span><span class="info-chip">持有头衔 <b>3</b></span></div>
+        <div class="user-tags"><span class="info-chip">持有头衔 <b>3</b></span></div>
       </div>
       <div class="panel list-focus">
         <div class="panel-h"><h2>用户头衔列表</h2></div>
         <div style="overflow:auto">
           <table>
-            <thead><tr><th>头衔</th><th>状态</th><th>获取方式</th><th>获取时间</th><th>有效期</th><th>来源/原因</th><th>操作</th></tr></thead>
+            <thead><tr><th>头衔</th><th>状态</th><th>获取时间</th><th>有效期</th><th>来源/原因</th><th>操作</th></tr></thead>
             <tbody id="userTitleRows"></tbody>
           </table>
         </div>
@@ -127,8 +125,11 @@
       <div class="config-card"><div class="ch">3. 状态配置</div><div class="cb">
         <div id="addStatusBlock">
           <div class="status-grid">
-            <div class="field"><label>头衔状态</label><select id="newTitleStatus"><option selected>上架</option><option>草稿</option></select></div>
-            <div class="section-note">新增头衔默认上架；选择草稿时仅后台保留，不在用户端 Title Wardrobe 中展示。</div>
+            <div class="field"><label>头衔状态</label><select id="newTitleStatus" onchange="toggleAddOffShelfReason()"><option selected>上架</option><option>下架</option></select></div>
+            <div class="section-note">新增头衔仅支持上架 / 下架两种状态；下架状态不在用户端 Title Wardrobe 中展示，也不可被发放。</div>
+          </div>
+          <div id="addOffShelfReasonBlock" style="display:none;margin-top:14px">
+            <div class="field"><label>下架原因</label><textarea id="addOffShelfReason" placeholder="必填，如：暂不对外发放 / 配置待确认"></textarea></div>
           </div>
           <div class="hint" style="margin-top:12px">手动发放 / 官方头衔不在头衔配置中设置有效期；实际有效期在「指定用户发放」时按天填写。</div>
         </div>
@@ -138,15 +139,13 @@
             <div class="field"><label>状态调整</label><select id="editStatusAction" onchange="toggleEditOffShelf()"><option value="keep">保持当前状态</option><option value="online">上架</option><option value="offline">下架</option></select></div>
           </div>
           <div id="editOffShelfBlock" style="display:none;margin-top:14px">
-            <div class="form-grid">
-              <div class="field"><label>下架处理</label><select><option>仅停止新增获取，已持有用户继续保留</option><option>下架并回收，已持有用户同步失去该头衔</option></select></div>
-              <div class="field"><label>操作原因</label><input placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></div>
-            </div>
-            <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">下架会影响用户端展示和后续获取；若选择“下架并回收”，当前佩戴该头衔的用户将同步取消展示。</div>
+            <div class="field"><label>下架原因</label><textarea id="editOffShelfReason" placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></textarea></div>
+            <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">下架后，该头衔不可新增发放；已发放用户不做自动回收处理。</div>
           </div>
-          <div class="hint" style="margin-top:12px">编辑已上线头衔时，优先支持调整名称、图片、描述、排序等展示信息；涉及上下架状态变更时，需通过状态调整完成，便于权限控制和操作追溯。</div>
+          <div class="hint" style="margin-top:12px">编辑头衔时，支持调整名称、图片、描述、排序及上下架状态；下架原因用于操作追溯，并会在下架状态编辑时展示。</div>
         </div>
       </div></div>
+      <div id="offlineReasonView" class="hint" style="display:none;margin-top:16px;border-color:#fed7aa;background:#fff7ed;color:#9a3412"><b>下架原因：</b><span id="offlineReasonText">—</span></div>
     </div>
     <div class="modal-f"><button class="btn gray" onclick="closeTitleModal()">取消</button><button class="btn primary" onclick="saveTitle()">保存</button></div>
   </div>
@@ -205,9 +204,8 @@
     <div class="modal-b">
       <div class="config-card"><div class="ch">下架确认</div><div class="cb">
         <div class="field"><label>下架头衔</label><input id="offShelfTitleName" disabled></div><br>
-        <div class="field"><label>下架处理</label><select id="offShelfPolicy"><option>仅停止新增获取，已持有用户继续保留</option><option>下架并回收，已持有用户同步失去该头衔</option></select></div><br>
-        <div class="field"><label>操作原因</label><textarea id="offShelfReason" placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></textarea></div>
-        <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">该操作与编辑头衔弹窗中的下架逻辑一致：必须选择下架处理方式，并填写操作原因后确认。</div>
+        <div class="field"><label>下架原因</label><textarea id="offShelfReason" placeholder="必填，如：活动结束 / 配置错误 / 违规处理"></textarea></div>
+        <div class="hint" style="margin-top:12px;border-color:#fed7aa;background:#fff7ed;color:#9a3412">下架后，该头衔不可新增发放；下架原因会记录到头衔配置中，并在编辑下架头衔时展示。</div>
       </div></div>
     </div>
     <div class="modal-f"><button class="btn gray" onclick="closeOffShelfModal()">取消</button><button class="btn red" onclick="confirmOffShelf()">确认下架</button></div>
@@ -231,7 +229,7 @@
 const pageMeta={
   titles:['头衔列表','统一管理社区头衔的新增、编辑、上下架及发放配置'],
   grant:['指定用户发放','默认展示已发放列表，支持发放新头衔'],
-  users:['用户头衔查询','查询用户持有头衔状态']
+  users:['用户头衔查询','查询用户头衔信息']
 };
 let titleModalMode='add';
 let editingTitleId=null;
@@ -244,8 +242,8 @@ let titles=[
  {name:'High Roller',id:'10002',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'842',wear:'316',weight:180,desc:'高价值用户荣誉头衔'},
  {name:'Official Creator',id:'10003',method:'官方头衔',methodClass:'official',cond:'—',valid:'发放时填写',status:'上架',own:'26',wear:'19',weight:160,desc:'官方认证创作者'},
  {name:'Superfan',id:'10004',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'1,207',wear:'498',weight:120,desc:'社区互动类头衔'},
- {name:'Rising Star',id:'10005',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'草稿',own:'-',wear:'-',weight:90,desc:'社区成长头衔'},
- {name:'Event King',id:'10006',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'0',wear:'0',weight:60,desc:'活动限定头衔'}
+ {name:'Rising Star',id:'10005',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'-',wear:'-',weight:90,desc:'社区成长头衔',offReason:'配置待确认，暂不对外发放'},
+ {name:'Event King',id:'10006',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'0',wear:'0',weight:60,desc:'活动限定头衔',offReason:'活动结束，停止继续发放'}
 ];
 let grantRecords=[
  {batch:'G20260611001',title:'High Roller',target:'批量 UID',success:498,fail:2,valid:'7天',operator:'admin',time:'2026-06-11 10:00',status:'已完成'},
@@ -266,11 +264,11 @@ function sortTitles(){titles.sort((a,b)=>(Number(b.weight)||0)-(Number(a.weight)
 function renderTitles(){
   sortTitles();
   document.getElementById('titleRows').innerHTML=titles.map(t=>{
-    const statusClass=t.status==='上架'?'online':t.status==='草稿'?'draft':'offline';
+    const statusClass=t.status==='上架'?'online':'offline';
     const statusAction=t.status==='上架'
       ? `<button class="btn mini red" onclick="openOffShelfModal('${t.id}')">下架</button>`
       : `<button class="btn mini gray" onclick="onlineTitle('${t.id}')">上架</button>`;
-    return `<tr><td><div class="title-cell"><div class="title-img">图片</div><div><b>${t.name}</b><br><span class="sub">后台上传</span></div></div></td><td>${t.id}</td><td><span class="pill ${t.methodClass}">${t.method}</span></td><td>${t.valid}</td><td><b>${t.weight}</b></td><td><span class="pill ${statusClass}">${t.status}</span></td><td>${t.own}</td><td>${t.wear}</td><td><div class="ops"><button class="btn mini gray" onclick="openTitleModal('edit','${t.id}')">编辑</button>${statusAction}</div></td></tr>`
+    return `<tr><td><div class="title-cell"><div class="title-img">图片</div><div><b>${t.name}</b><br><span class="sub">后台上传</span></div></div></td><td>${t.id}</td><td><span class="pill ${t.methodClass}">${t.method}</span></td><td><b>${t.weight}</b></td><td><span class="pill ${statusClass}">${t.status}</span></td><td>${t.own}</td><td>${t.wear}</td><td><div class="ops"><button class="btn mini gray" onclick="openTitleModal('edit','${t.id}')">编辑</button>${statusAction}</div></td></tr>`
   }).join('');
   populateGrantTitles();
 }
@@ -283,7 +281,7 @@ function renderGrantRows(){
 function renderUserTitles(){
   const tbody=document.getElementById('userTitleRows');
   if(!tbody) return;
-  tbody.innerHTML=userTitles.map(t=>`<tr data-title="${t.name}"><td><div class="title-cell"><div class="title-img">图</div><b>${t.name}</b></div></td><td><span class="pill ${t.state==='Current'?'current':'online'}">${t.state}</span></td><td>${t.method}</td><td>${t.time}</td><td>${t.valid}</td><td>${t.source}</td><td><button class="btn mini red" onclick="openRecycleConfirm('${t.name}')">回收</button></td></tr>`).join('');
+  tbody.innerHTML=userTitles.map(t=>`<tr data-title="${t.name}"><td><div class="title-cell"><div class="title-img">图</div><b>${t.name}</b></div></td><td><span class="pill ${t.state==='Current'?'current':'online'}">${t.state}</span></td><td>${t.time}</td><td>${t.valid}</td><td>${t.source}</td><td><button class="btn mini red" onclick="openRecycleConfirm('${t.name}')">回收</button></td></tr>`).join('');
   const count=document.querySelector('.user-tags .info-chip:last-child b');
   if(count) count.textContent=userTitles.length;
 }
@@ -297,6 +295,8 @@ function resetTitleForm(){
   document.getElementById('sortWeight').value='100';
   document.getElementById('titleDesc').value='';
   document.getElementById('newTitleStatus').value='上架';
+  const addReason=document.getElementById('addOffShelfReason'); if(addReason) addReason.value='';
+  toggleAddOffShelfReason();
   setSelectedMethod('手动发放');
 }
 function fillConditionsFromCond(cond){
@@ -313,7 +313,7 @@ function openTitleModal(type,id=''){
   const isAdd=type==='add';
   configureMethodOptions(isAdd);
   document.getElementById('titleModalName').textContent=isAdd?'新增头衔':'编辑头衔';
-  if(isAdd){resetTitleForm()}else{
+  if(isAdd){resetTitleForm();renderOfflineReasonView(null)}else{
     const target=titles.find(t=>t.id===id);
     if(target){
       document.getElementById('titleName').value=target.name;
@@ -324,6 +324,8 @@ function openTitleModal(type,id=''){
       document.getElementById('editCurrentStatus').value=status;
       setEditStatusActionOptions(status);
       document.getElementById('editStatusAction').value='keep';
+      const editReason=document.getElementById('editOffShelfReason'); if(editReason) editReason.value='';
+      renderOfflineReasonView(target);
       toggleEditOffShelf();
     }
   }
@@ -347,9 +349,13 @@ function validateTitleForm(){
   const weight=document.getElementById('sortWeight').value.trim();
   if(!name){toast('请填写头衔名称');return false}
   if(!weight){toast('请填写排序权重');return false}
+  if(titleModalMode==='add'&&document.getElementById('newTitleStatus').value==='下架'){
+    const reason=document.getElementById('addOffShelfReason')?.value.trim();
+    if(!reason){toast('请填写下架原因');return false}
+  }
   if(titleModalMode==='edit'&&document.getElementById('editStatusAction').value==='offline'){
-    const reason=document.querySelector('#editOffShelfBlock input')?.value.trim();
-    if(!reason){toast('请填写操作原因');return false}
+    const reason=document.getElementById('editOffShelfReason')?.value.trim();
+    if(!reason){toast('请填写下架原因');return false}
   }
   return true;
 }
@@ -364,11 +370,13 @@ function saveTitle(){
     valid:'发放时填写',
     weight:Number(document.getElementById('sortWeight').value)||0,
     desc:document.getElementById('titleDesc').value.trim(),
+    offReason:'',
     own:'0',wear:'0'
   };
   if(titleModalMode==='add'){
     payload.id=String(nextTitleId++);
     payload.status=document.getElementById('newTitleStatus').value;
+    payload.offReason=payload.status==='下架'?(document.getElementById('addOffShelfReason')?.value.trim()||''):'';
     titles.push(payload);
     closeTitleModal();renderTitles();toast('新增成功，头衔列表已生成新配置');
   }else{
@@ -376,7 +384,8 @@ function saveTitle(){
     if(target){
       const action=document.getElementById('editStatusAction').value;
       const newStatus=action==='online'?'上架':action==='offline'?'下架':target.status;
-      Object.assign(target,payload,{id:target.id,status:newStatus,own:target.own,wear:newStatus==='下架'&&document.querySelector('#editOffShelfBlock select')?.selectedIndex===1?'0':target.wear});
+      const offReason=action==='offline'?(document.getElementById('editOffShelfReason')?.value.trim()||target.offReason||''):(newStatus==='下架'?target.offReason||'':'');
+      Object.assign(target,payload,{id:target.id,status:newStatus,own:target.own,wear:target.wear,offReason});
     }
     closeTitleModal();renderTitles();toast('编辑成功，列表内容已同步更新');
   }
@@ -456,18 +465,35 @@ function handleExcelUpload(input){
 }
 
 function toggleConditions(){const box=document.getElementById('conditionBox');if(!box)return;box.classList.remove('show')}
-const conditionTypes=['发帖数量','获得点赞数量','充值次数','累计登录天数','社区等级','短剧勋章数量','观看剧集数量','消耗 Beans'];
+const conditionTypes=['发帖数量','获得点赞数量','充值次数','累计登录天数','短剧勋章数量','观看剧集数量','消耗 Beans'];
 function conditionRow(type='发帖数量',value='10',period='历史累计'){
   if(!conditionTypes.includes(type)) type='发帖数量';
   return `<div class="condition-row"><div class="field"><label>条件类型</label><select>${conditionTypes.map(x=>`<option ${x===type?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>判断方式</label><select><option>≥</option><option>=</option><option>≤</option></select></div><div class="field"><label>目标值</label><input value="${value}"></div><div class="field"><label>统计周期</label><select><option ${period==='历史累计'?'selected':''}>历史累计</option><option ${period==='实时状态'?'selected':''}>实时状态</option><option>自然日</option><option>自然周</option><option>自然月</option><option>指定时间段</option></select></div><div class="field"><label>前端展示文案</label><input value="${type} ≥ ${value}"></div><button class="btn red mini condition-delete" onclick="this.closest('.condition-row').remove();applyConditionMode()">删除</button></div>`
 }
 function addCondition(){const mode=document.getElementById('conditionMode')?.value||'single';const rows=document.querySelectorAll('#conditionRows .condition-row').length;if(mode==='single'&&rows>=1){toast('单条件模式下仅允许配置 1 个条件');return}document.getElementById('conditionRows').insertAdjacentHTML('beforeend',conditionRow());applyConditionMode()}
 function applyConditionMode(){let mode=document.getElementById('conditionMode')?.value||'single';const box=document.getElementById('conditionRows');if(!box)return;let rows=[...box.querySelectorAll('.condition-row')];if(mode==='single'&&rows.length>1){rows.slice(1).forEach(r=>r.remove())}rows=[...box.querySelectorAll('.condition-row')];if(rows.length===0){box.insertAdjacentHTML('beforeend',conditionRow())}document.getElementById('addConditionBtn').style.display=mode==='single'?'none':'inline-flex';box.querySelectorAll('.condition-delete').forEach(btn=>btn.style.display=mode==='single'?'none':'inline-flex')}
+function toggleAddOffShelfReason(){
+  const status=document.getElementById('newTitleStatus')?.value;
+  const block=document.getElementById('addOffShelfReasonBlock');
+  if(block) block.style.display=status==='下架'?'block':'none';
+}
+function renderOfflineReasonView(target){
+  const box=document.getElementById('offlineReasonView');
+  const text=document.getElementById('offlineReasonText');
+  if(!box||!text) return;
+  if(target&&target.status==='下架'){
+    text.textContent=target.offReason||'暂无下架原因记录';
+    box.style.display='block';
+  }else{
+    text.textContent='—';
+    box.style.display='none';
+  }
+}
 function toggleEditOffShelf(){const action=document.getElementById('editStatusAction')?.value;const block=document.getElementById('editOffShelfBlock');if(block) block.style.display=action==='offline'?'block':'none'}
 let pendingOffShelfId='';
-function openOffShelfModal(id){const t=titles.find(x=>x.id===id);pendingOffShelfId=id;document.getElementById('offShelfTitleName').value=t?t.name:id;document.getElementById('offShelfPolicy').selectedIndex=0;document.getElementById('offShelfReason').value='';document.getElementById('offShelfModal').classList.add('show')}
+function openOffShelfModal(id){const t=titles.find(x=>x.id===id);pendingOffShelfId=id;document.getElementById('offShelfTitleName').value=t?t.name:id;document.getElementById('offShelfReason').value='';document.getElementById('offShelfModal').classList.add('show')}
 function closeOffShelfModal(){document.getElementById('offShelfModal').classList.remove('show')}
-function confirmOffShelf(){const reason=document.getElementById('offShelfReason').value.trim();if(!reason){toast('请填写操作原因');return}const t=titles.find(x=>x.id===pendingOffShelfId);if(t){t.status='下架';if(document.getElementById('offShelfPolicy').selectedIndex===1){t.own='0';t.wear='0'}}closeOffShelfModal();renderTitles();toast('已下架，头衔列表已同步更新')}
+function confirmOffShelf(){const reason=document.getElementById('offShelfReason').value.trim();if(!reason){toast('请填写下架原因');return}const t=titles.find(x=>x.id===pendingOffShelfId);if(t){t.status='下架';t.offReason=reason}closeOffShelfModal();renderTitles();toast('已下架，头衔列表已同步更新')}
 let pendingRecycleTitle='';
 function openRecycleConfirm(title){pendingRecycleTitle=title;document.getElementById('recycleTitleName').textContent=title;document.getElementById('recycleConfirmModal').classList.add('show')}
 function closeRecycleConfirm(){document.getElementById('recycleConfirmModal').classList.remove('show')}
