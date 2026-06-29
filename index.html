@@ -6,7 +6,7 @@
 <title>社区头衔后台管理 Demo</title>
 <style>
 :root{--bg:#f6f8fc;--side:#101827;--panel:#fff;--line:#e6eaf2;--text:#172033;--muted:#667085;--brand:#7c3aed;--pink:#ec4899;--blue:#2563eb;--green:#16a34a;--red:#ef4444;--gold:#b7791f;--shadow:0 16px 42px rgba(15,23,42,.09);--r:16px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif}.app{display:flex;min-height:100vh}.side{width:248px;background:var(--side);color:#cbd5e1;padding:22px 16px;position:fixed;inset:0 auto 0 0}.brand{display:flex;gap:12px;align-items:center;color:#fff;font-weight:900;font-size:18px;margin-bottom:28px;padding:0 8px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--pink));display:grid;place-items:center}.nav-title{font-size:12px;color:#64748b;margin:18px 8px 10px}.nav{display:flex;flex-direction:column;gap:8px}.nav button{border:0;background:transparent;color:#cbd5e1;text-align:left;padding:13px 12px;border-radius:13px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center}.nav button.active{background:linear-gradient(90deg,rgba(124,58,237,.32),rgba(236,72,153,.12));color:#fff}.nav button:hover{background:#1f2937;color:#fff}.main{margin-left:248px;width:calc(100% - 248px);padding:26px 30px 54px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.topbar h1{margin:0 0 6px;font-size:26px}.sub{font-size:13px;color:var(--muted)}.admin{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#f472b6)}.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 26px rgba(15,23,42,.05);overflow:hidden;margin-bottom:18px}.panel-h{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-h h2{margin:0;font-size:17px}.panel-b{padding:18px 20px}.filters{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr auto;gap:12px;align-items:end}.filters.user{grid-template-columns:1.6fr 1fr auto}.field label{display:block;font-size:12px;color:#475569;margin-bottom:7px;font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--text);padding:11px 12px;font-size:14px;outline:none}.field textarea{min-height:86px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(124,58,237,.10)}.field input:disabled,.field select:disabled{background:#f8fafc;color:#94a3b8;cursor:not-allowed}.btn{border:0;border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:800;font-size:14px;background:#eef2ff;color:#4338ca;display:inline-flex;align-items:center;gap:7px}.btn.primary{background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff}.btn.dark{background:#111827;color:#fff}.btn.gray{background:#f3f4f6;color:#374151}.btn.red{background:#fee2e2;color:#dc2626}.btn:active{transform:translateY(1px)}.icon-btn{width:42px;height:42px;border-radius:14px;border:0;cursor:pointer;background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff;display:grid;place-items:center;font-size:19px;box-shadow:0 10px 22px rgba(124,58,237,.25)}table{width:100%;border-collapse:collapse}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:13px}th{background:#f8fafc;color:#475569;font-weight:850}tr:hover td{background:#fcfcff}.title-cell{display:flex;align-items:center;gap:10px}.title-img{width:58px;height:32px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;display:grid;place-items:center;color:#7c3aed;font-size:12px;font-weight:850;overflow:hidden}.title-img img{width:100%;height:100%;object-fit:cover}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:850;white-space:nowrap}.pill.online{background:#dcfce7;color:#15803d}.pill.draft{background:#f3f4f6;color:#4b5563}.pill.offline{background:#fee2e2;color:#dc2626}.pill.auto{background:#ede9fe;color:#6d28d9}.pill.manual{background:#e0f2fe;color:#0369a1}.pill.official{background:#fef3c7;color:#b45309}.pill.current{background:#ecfdf5;color:#047857}.ops{display:flex;gap:8px;flex-wrap:wrap}.mini{padding:7px 9px;font-size:12px;border-radius:9px}.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:20;align-items:center;justify-content:center;padding:24px}.modal-mask.show{display:flex}.modal{width:min(1000px,96vw);max-height:92vh;background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}.modal.small{width:min(820px,94vw)}.modal-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-h h3{margin:0;font-size:19px}.close{border:0;background:#f3f4f6;width:34px;height:34px;border-radius:10px;font-size:20px;cursor:pointer;color:#374151}.modal-b{padding:20px 22px;overflow:auto}.modal-f{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}.config-card{border:1px solid var(--line);border-radius:15px;background:#fff;margin-bottom:16px;overflow:hidden}.ch{padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:850;font-size:14px}.cb{padding:16px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid.three{grid-template-columns:repeat(3,1fr)}.upload{border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b}.radio-row{display:flex;gap:10px;flex-wrap:wrap}.radio-card{border:1px solid var(--line);border-radius:13px;padding:12px 14px;cursor:pointer;min-width:150px;background:#fff}.radio-card input{margin-right:8px}.radio-card:has(input:checked){border-color:#8b5cf6;background:#f5f3ff;box-shadow:0 0 0 3px rgba(124,58,237,.08)}.condition-box{display:none;border:1px solid #ddd6fe;background:#fbf8ff;border-radius:16px;padding:16px;margin-top:16px}.condition-box.show{display:block}.condition-row{display:grid;grid-template-columns:1.1fr .8fr .8fr 1fr 1.2fr auto;gap:10px;align-items:end;margin-bottom:10px}.hint{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:13px;padding:12px;color:#64748b;font-size:13px;line-height:1.6}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px}.user-layout{display:grid;grid-template-columns:360px 1fr;gap:18px}.user-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px}.user-head{display:flex;gap:12px;align-items:center}.uavatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#c4b5fd,#93c5fd)}.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.kv div{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.kv b{display:block;font-size:18px}.tabs{display:flex;gap:8px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;cursor:pointer;font-weight:800;color:#475569}.tab.active{background:#ede9fe;color:#6d28d9;border-color:#ddd6fe}.toast{position:fixed;right:28px;bottom:28px;background:#111827;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:50}.toast.show{display:block;animation:fade 2s ease forwards}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif}.app{display:flex;min-height:100vh}.side{width:248px;background:var(--side);color:#cbd5e1;padding:22px 16px;position:fixed;inset:0 auto 0 0}.brand{display:flex;gap:12px;align-items:center;color:#fff;font-weight:900;font-size:18px;margin-bottom:28px;padding:0 8px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--pink));display:grid;place-items:center}.nav-title{font-size:12px;color:#64748b;margin:18px 8px 10px}.nav{display:flex;flex-direction:column;gap:8px}.nav button{border:0;background:transparent;color:#cbd5e1;text-align:left;padding:13px 12px;border-radius:13px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center}.nav button.active{background:linear-gradient(90deg,rgba(124,58,237,.32),rgba(236,72,153,.12));color:#fff}.nav button:hover{background:#1f2937;color:#fff}.main{margin-left:248px;width:calc(100% - 248px);padding:26px 30px 54px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.topbar h1{margin:0 0 6px;font-size:26px}.sub{font-size:13px;color:var(--muted)}.admin{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#f472b6)}.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 26px rgba(15,23,42,.05);overflow:hidden;margin-bottom:18px}.panel-h{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-h h2{margin:0;font-size:17px}.panel-b{padding:18px 20px}.filters{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr auto;gap:12px;align-items:end}.filters.user{grid-template-columns:1.6fr 1fr auto}.field label{display:block;font-size:12px;color:#475569;margin-bottom:7px;font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--text);padding:11px 12px;font-size:14px;outline:none}.field textarea{min-height:86px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(124,58,237,.10)}.field input:disabled,.field select:disabled,.field textarea:disabled,.field textarea[readonly]{background:#f8fafc;color:#64748b;cursor:not-allowed}.btn{border:0;border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:800;font-size:14px;background:#eef2ff;color:#4338ca;display:inline-flex;align-items:center;gap:7px}.btn.primary{background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff}.btn.dark{background:#111827;color:#fff}.btn.gray{background:#f3f4f6;color:#374151}.btn.red{background:#fee2e2;color:#dc2626}.btn:active{transform:translateY(1px)}.icon-btn{width:42px;height:42px;border-radius:14px;border:0;cursor:pointer;background:linear-gradient(135deg,var(--brand),var(--pink));color:#fff;display:grid;place-items:center;font-size:19px;box-shadow:0 10px 22px rgba(124,58,237,.25)}table{width:100%;border-collapse:collapse}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:13px}th{background:#f8fafc;color:#475569;font-weight:850}tr:hover td{background:#fcfcff}.title-cell{display:flex;align-items:center;gap:10px}.title-img{width:58px;height:32px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;display:grid;place-items:center;color:#7c3aed;font-size:12px;font-weight:850;overflow:hidden}.title-img img{width:100%;height:100%;object-fit:cover}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:850;white-space:nowrap}.pill.online{background:#dcfce7;color:#15803d}.pill.draft{background:#f3f4f6;color:#4b5563}.pill.offline{background:#fee2e2;color:#dc2626}.pill.auto{background:#ede9fe;color:#6d28d9}.pill.manual{background:#e0f2fe;color:#0369a1}.pill.official{background:#fef3c7;color:#b45309}.pill.current{background:#ecfdf5;color:#047857}.ops{display:flex;gap:8px;flex-wrap:wrap}.mini{padding:7px 9px;font-size:12px;border-radius:9px}.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:20;align-items:center;justify-content:center;padding:24px}.modal-mask.show{display:flex}.modal{width:min(1000px,96vw);max-height:92vh;background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}.modal.small{width:min(820px,94vw)}.modal-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-h h3{margin:0;font-size:19px}.close{border:0;background:#f3f4f6;width:34px;height:34px;border-radius:10px;font-size:20px;cursor:pointer;color:#374151}.modal-b{padding:20px 22px;overflow:auto}.modal-f{padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}.config-card{border:1px solid var(--line);border-radius:15px;background:#fff;margin-bottom:16px;overflow:hidden}.ch{padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:850;font-size:14px}.cb{padding:16px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid.three{grid-template-columns:repeat(3,1fr)}.upload{border:1px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b}.radio-row{display:flex;gap:10px;flex-wrap:wrap}.radio-card{border:1px solid var(--line);border-radius:13px;padding:12px 14px;cursor:pointer;min-width:150px;background:#fff}.radio-card input{margin-right:8px}.radio-card:has(input:checked){border-color:#8b5cf6;background:#f5f3ff;box-shadow:0 0 0 3px rgba(124,58,237,.08)}.condition-box{display:none;border:1px solid #ddd6fe;background:#fbf8ff;border-radius:16px;padding:16px;margin-top:16px}.condition-box.show{display:block}.condition-row{display:grid;grid-template-columns:1.1fr .8fr .8fr 1fr 1.2fr auto;gap:10px;align-items:end;margin-bottom:10px}.hint{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:13px;padding:12px;color:#64748b;font-size:13px;line-height:1.6}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px}.user-layout{display:grid;grid-template-columns:360px 1fr;gap:18px}.user-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px}.user-head{display:flex;gap:12px;align-items:center}.uavatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#c4b5fd,#93c5fd)}.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.kv div{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.kv b{display:block;font-size:18px}.tabs{display:flex;gap:8px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;cursor:pointer;font-weight:800;color:#475569}.tab.active{background:#ede9fe;color:#6d28d9;border-color:#ddd6fe}.toast{position:fixed;right:28px;bottom:28px;background:#111827;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:50}.toast.show{display:block;animation:fade 2s ease forwards}
 .user-compact{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 8px 18px rgba(15,23,42,.04)}
 .user-compact-left{display:flex;align-items:center;gap:12px;min-width:260px}.user-compact .uavatar{width:42px;height:42px}.user-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.info-chip{border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:7px 11px;font-size:12px;color:#475569}.info-chip b{color:#111827;margin-left:4px}.list-focus{border:2px solid #ede9fe;box-shadow:0 14px 32px rgba(124,58,237,.08)}
 
@@ -42,7 +42,7 @@
         <div class="panel-b">
           <div class="filters" style="grid-template-columns:1.6fr 1fr 1fr auto">
             <div class="field"><label>头衔名称 / ID</label><input placeholder="搜索 Drama Expert / 10001"></div>
-            <div class="field"><label>获取方式</label><select><option>全部</option><option>手动发放</option><option>官方头衔</option></select></div>
+            <div class="field"><label>获取方式</label><select><option>全部</option><option>普通头衔</option><option>官方头衔</option></select></div>
             <div class="field"><label>上架状态</label><select><option>全部</option><option>上架</option><option>下架</option></select></div>
             <button class="btn dark" onclick="toast('已按当前条件查询')">查询</button>
           </div>
@@ -69,7 +69,7 @@
           <div class="filters" style="grid-template-columns:1.4fr 1fr 1fr 1fr auto">
             <div class="field"><label>头衔ID</label><input placeholder="搜索头衔ID，如 10002"></div>
             <div class="field"><label>发放状态</label><select><option>全部</option><option>已完成</option><option>部分失败</option></select></div>
-            <div class="field"><label>发放方式</label><select><option>全部</option><option>单用户</option><option>批量 UID</option><option>上传名单</option></select></div>
+            <div class="field"><label>发放方式</label><select><option>全部</option><option>UID 输入</option><option>Excel 导入名单</option></select></div>
             <div class="field"><label>时间范围</label><input type="date"></div>
             <button class="btn dark" onclick="toast('已查询发放批次')">查询</button>
           </div>
@@ -119,19 +119,18 @@
         <div class="form-grid"><div class="field"><label>头衔图片</label><div class="upload"><input type="file" accept="image/*"><br><span>手动上传头衔图片，支持 PNG / JPG / WebP</span></div></div><div class="field"><label>头衔描述</label><textarea id="titleDesc" placeholder="用于后台识别和用户端详情说明"></textarea></div></div>
       </div></div>
       <div class="config-card"><div class="ch">2. 获取方式</div><div class="cb">
-        <div class="method-radio-row" id="methodOptions"><label class="radio-card"><input type="radio" name="method" value="manual" checked>手动发放</label><label class="radio-card"><input type="radio" name="method" value="official">官方头衔</label></div>
-        <div class="hint method-hint">当前版本头衔均由后台发放，不再支持自动解锁配置；官方头衔按手动发放逻辑处理。</div>
+        <div class="method-radio-row" id="methodOptions"><label class="radio-card"><input type="radio" name="method" value="manual" checked>普通头衔</label><label class="radio-card"><input type="radio" name="method" value="official">官方头衔</label></div>
+        <div class="hint method-hint">当前版本获取方式仅分为普通头衔和官方头衔；普通头衔用于运营发放，官方头衔用于官方身份认证。</div>
       </div></div>
       <div class="config-card"><div class="ch">3. 状态配置</div><div class="cb">
         <div id="addStatusBlock">
           <div class="status-grid">
             <div class="field"><label>头衔状态</label><select id="newTitleStatus" onchange="toggleAddOffShelfReason()"><option selected>上架</option><option>下架</option></select></div>
-            <div class="section-note">新增头衔仅支持上架 / 下架两种状态；下架状态不在用户端 Title Wardrobe 中展示，也不可被发放。</div>
           </div>
           <div id="addOffShelfReasonBlock" style="display:none;margin-top:14px">
             <div class="field"><label>下架原因</label><textarea id="addOffShelfReason" placeholder="必填，如：暂不对外发放 / 配置待确认"></textarea></div>
           </div>
-          <div class="hint" style="margin-top:12px">手动发放 / 官方头衔不在头衔配置中设置有效期；实际有效期在「指定用户发放」时按天填写。</div>
+          <div class="hint" style="margin-top:12px">1. 新增头衔仅支持上架 / 下架两种状态；下架状态不在用户端 Title Wardrobe 中展示，也不可被发放。<br>2. 普通头衔 / 官方头衔不在头衔配置中设置有效期；实际有效期在「指定用户发放」时按天填写。</div>
         </div>
         <div id="editStatusBlock" style="display:none">
           <div class="form-grid">
@@ -158,9 +157,9 @@
       <div class="config-card"><div class="ch">1. 发放内容</div><div class="cb"><div class="form-grid"><div class="field"><label>选择头衔</label><select id="grantTitleSelect"></select></div><div class="field"><label>有效期</label><div class="inline-days"><input id="grantValidityDays" type="number" min="1" value="7" placeholder="默认 7"><span class="unit">天</span></div></div></div><div class="hint" style="margin-top:12px">有效期在发放时填写，单位为天；未修改时默认发放 7 天。</div></div></div>
       <div class="config-card"><div class="ch">2. 发放对象</div><div class="cb">
         <div class="clean-grid">
-          <div class="field"><label>对象类型</label><select id="grantObjectType" onchange="toggleGrantObjectMode()"><option>单用户 UID</option><option>批量 UID</option><option>Excel 导入名单</option></select></div>
-          <div class="section-note">支持单 UID、批量 UID 或 Excel 导入；Excel 导入后系统自动校验 UID，并生成可发放名单。</div>
-          <div class="field uid-area full" id="uidArea"><label>用户 ID / 批量 UID</label><textarea id="grantUids" placeholder="输入用户 ID，多个用户请换行"></textarea></div>
+          <div class="field"><label>对象类型</label><select id="grantObjectType" onchange="toggleGrantObjectMode()"><option>UID 输入</option><option>Excel 导入名单</option></select></div>
+          <div class="section-note">支持在输入框填写单个 UID 或多个 UID；如需批量导入，可使用 Excel 导入名单。Excel 导入后系统自动校验 UID，并生成可发放名单。</div>
+          <div class="field uid-area full" id="uidArea"><label>用户 UID</label><textarea id="grantUids" placeholder="可输入单个 UID，也可输入多个 UID；多个 UID 请换行"></textarea></div>
         </div>
         <div class="excel-section hidden" id="excelImportBlock">
           <label class="field"><span style="display:block;font-size:12px;color:#475569;margin-bottom:7px;font-weight:800">导入 Excel</span></label>
@@ -190,6 +189,10 @@
           <thead><tr><th>UID</th><th>昵称</th><th>发放结果</th><th>失败原因</th><th>发放时间</th></tr></thead>
           <tbody id="grantUserRows"></tbody>
         </table>
+      </div></div>
+      <div class="config-card"><div class="ch">发放详情原因</div><div class="cb">
+        <div class="field"><label>发放原因</label><textarea id="detailReason" readonly placeholder="—"></textarea></div>
+        <div class="hint" style="margin-top:12px">用户端头衔按钮状态仅保留 Equipped / Equip：当前佩戴展示 Equipped，未佩戴可操作展示 Equip。</div>
       </div></div>
     </div>
     <div class="modal-f"><button class="btn gray" onclick="closeGrantDetail()">关闭</button></div>
@@ -238,27 +241,27 @@ let nextGrantNo=12;
 let grantParsedUids=[];
 let grantUploadMeta=null;
 let titles=[
- {name:'Drama Expert',id:'10001',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'3,126',wear:'1,482',weight:200,desc:'观看成长类头衔'},
- {name:'High Roller',id:'10002',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'842',wear:'316',weight:180,desc:'高价值用户荣誉头衔'},
+ {name:'Drama Expert',id:'10001',method:'普通头衔',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'3,126',wear:'1,482',weight:200,desc:'观看成长类头衔'},
+ {name:'High Roller',id:'10002',method:'普通头衔',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'842',wear:'316',weight:180,desc:'高价值用户荣誉头衔'},
  {name:'Official Creator',id:'10003',method:'官方头衔',methodClass:'official',cond:'—',valid:'发放时填写',status:'上架',own:'26',wear:'19',weight:160,desc:'官方认证创作者'},
- {name:'Superfan',id:'10004',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'1,207',wear:'498',weight:120,desc:'社区互动类头衔'},
- {name:'Rising Star',id:'10005',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'-',wear:'-',weight:90,desc:'社区成长头衔',offReason:'配置待确认，暂不对外发放'},
- {name:'Event King',id:'10006',method:'手动发放',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'0',wear:'0',weight:60,desc:'活动限定头衔',offReason:'活动结束，停止继续发放'}
+ {name:'Superfan',id:'10004',method:'普通头衔',methodClass:'manual',cond:'—',valid:'发放时填写',status:'上架',own:'1,207',wear:'498',weight:120,desc:'社区互动类头衔'},
+ {name:'Rising Star',id:'10005',method:'普通头衔',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'-',wear:'-',weight:90,desc:'社区成长头衔',offReason:'配置待确认，暂不对外发放'},
+ {name:'Event King',id:'10006',method:'普通头衔',methodClass:'manual',cond:'—',valid:'发放时填写',status:'下架',own:'0',wear:'0',weight:60,desc:'活动限定头衔',offReason:'活动结束，停止继续发放'}
 ];
 let grantRecords=[
- {batch:'G20260611001',title:'High Roller',target:'批量 UID',success:498,fail:2,valid:'7天',operator:'admin',time:'2026-06-11 10:00',status:'已完成'},
- {batch:'G20260610008',title:'Official Creator',target:'单用户 UID',success:1,fail:0,valid:'7天',operator:'admin',time:'2026-06-10 18:22',status:'已完成'},
- {batch:'G20260608003',title:'Superfan',target:'上传名单文件',success:73,fail:4,valid:'14天',operator:'ops_01',time:'2026-06-08 12:30',status:'部分失败'}
+ {batch:'G20260611001',title:'High Roller',target:'UID 输入',success:498,fail:2,valid:'7天',operator:'admin',time:'2026-06-11 10:00',status:'已完成'},
+ {batch:'G20260610008',title:'Official Creator',target:'UID 输入',success:1,fail:0,valid:'7天',operator:'admin',time:'2026-06-10 18:22',status:'已完成'},
+ {batch:'G20260608003',title:'Superfan',target:'Excel 导入名单',success:73,fail:4,valid:'14天',operator:'ops_01',time:'2026-06-08 12:30',status:'部分失败'}
 ];
 let grantDetails={
- 'G20260611001':{title:'High Roller',status:'已完成',users:[['664194933','Tweeneer','成功','—','2026-06-11 10:00'],['664194934','Maya','成功','—','2026-06-11 10:00'],['664194935','Aarav','失败','用户不存在','2026-06-11 10:00'],['664194936','Palak','成功','—','2026-06-11 10:00']]},
- 'G20260610008':{title:'Official Creator',status:'已完成',users:[['774200128','Official Riya','成功','—','2026-06-10 18:22']]},
- 'G20260608003':{title:'Superfan',status:'部分失败',users:[['884100001','Vihaan','成功','—','2026-06-08 12:30'],['884100002','Aisha','成功','—','2026-06-08 12:30'],['884100003','Guest_82','失败','账号封禁','2026-06-08 12:30'],['884100004','Narzary99','成功','—','2026-06-08 12:30']]}
+ 'G20260611001':{title:'High Roller',status:'已完成',reason:'充值活动奖励',users:[['664194933','Tweeneer','成功','—','2026-06-11 10:00'],['664194934','Maya','成功','—','2026-06-11 10:00'],['664194935','Aarav','失败','用户不存在','2026-06-11 10:00'],['664194936','Palak','成功','—','2026-06-11 10:00']]},
+ 'G20260610008':{title:'Official Creator',status:'已完成',reason:'官方认证',users:[['774200128','Official Riya','成功','—','2026-06-10 18:22']]},
+ 'G20260608003':{title:'Superfan',status:'部分失败',reason:'社区活动奖励名单导入',users:[['884100001','Vihaan','成功','—','2026-06-08 12:30'],['884100002','Aisha','成功','—','2026-06-08 12:30'],['884100003','Guest_82','失败','账号封禁','2026-06-08 12:30'],['884100004','Narzary99','成功','—','2026-06-08 12:30']]}
 };
 let userTitles=[
- {name:'Drama Expert',state:'Current',method:'手动发放',time:'2026-06-10 10:12',valid:'7天',source:'运营补发'},
- {name:'High Roller',state:'Owned',method:'手动发放',time:'2026-06-08 18:02',valid:'7天',source:'充值活动奖励'},
- {name:'Official Creator',state:'Owned',method:'官方头衔',time:'2026-06-01 09:20',valid:'7天',source:'官方认证'}
+ {name:'Drama Expert',state:'Equipped',method:'普通头衔',time:'2026-06-10 10:12',valid:'7天',source:'运营补发'},
+ {name:'High Roller',state:'Equip',method:'普通头衔',time:'2026-06-08 18:02',valid:'7天',source:'充值活动奖励'},
+ {name:'Official Creator',state:'Equip',method:'官方头衔',time:'2026-06-01 09:20',valid:'7天',source:'官方认证'}
 ];
 function sortTitles(){titles.sort((a,b)=>(Number(b.weight)||0)-(Number(a.weight)||0)||String(b.id).localeCompare(String(a.id)))}
 function renderTitles(){
@@ -268,7 +271,7 @@ function renderTitles(){
     const statusAction=t.status==='上架'
       ? `<button class="btn mini red" onclick="openOffShelfModal('${t.id}')">下架</button>`
       : `<button class="btn mini gray" onclick="onlineTitle('${t.id}')">上架</button>`;
-    return `<tr><td><div class="title-cell"><div class="title-img">图片</div><div><b>${t.name}</b><br><span class="sub">后台上传</span></div></div></td><td>${t.id}</td><td><span class="pill ${t.methodClass}">${t.method}</span></td><td><b>${t.weight}</b></td><td><span class="pill ${statusClass}">${t.status}</span></td><td>${t.own}</td><td>${t.wear}</td><td><div class="ops"><button class="btn mini gray" onclick="openTitleModal('edit','${t.id}')">编辑</button>${statusAction}</div></td></tr>`
+    return `<tr><td><div class="title-cell"><div class="title-img">Icon</div><div><b>${t.name}</b></div></div></td><td>${t.id}</td><td><span class="pill ${t.methodClass}">${t.method}</span></td><td><b>${t.weight}</b></td><td><span class="pill ${statusClass}">${t.status}</span></td><td>${t.own}</td><td>${t.wear}</td><td><div class="ops"><button class="btn mini gray" onclick="openTitleModal('edit','${t.id}')">编辑</button>${statusAction}</div></td></tr>`
   }).join('');
   populateGrantTitles();
 }
@@ -281,14 +284,14 @@ function renderGrantRows(){
 function renderUserTitles(){
   const tbody=document.getElementById('userTitleRows');
   if(!tbody) return;
-  tbody.innerHTML=userTitles.map(t=>`<tr data-title="${t.name}"><td><div class="title-cell"><div class="title-img">图</div><b>${t.name}</b></div></td><td><span class="pill ${t.state==='Current'?'current':'online'}">${t.state}</span></td><td>${t.time}</td><td>${t.valid}</td><td>${t.source}</td><td><button class="btn mini red" onclick="openRecycleConfirm('${t.name}')">回收</button></td></tr>`).join('');
+  tbody.innerHTML=userTitles.map(t=>`<tr data-title="${t.name}"><td><div class="title-cell"><div class="title-img">图</div><b>${t.name}</b></div></td><td><span class="pill ${t.state==='Equipped'?'current':'online'}">${t.state}</span></td><td>${t.time}</td><td>${t.valid}</td><td>${t.source}</td><td><button class="btn mini red" onclick="openRecycleConfirm('${t.name}')">回收</button></td></tr>`).join('');
   const count=document.querySelector('.user-tags .info-chip:last-child b');
   if(count) count.textContent=userTitles.length;
 }
 function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('pageTitle').textContent=pageMeta[id][0];document.getElementById('pageSub').textContent=pageMeta[id][1];window.scrollTo(0,0)}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
 function methodClass(method){return method==='官方头衔'?'official':'manual'}
-function getSelectedMethod(){const selected=document.querySelector('input[name="method"]:checked');const v=selected?selected.value:'manual';return v==='official'?'官方头衔':'手动发放'}
+function getSelectedMethod(){const selected=document.querySelector('input[name="method"]:checked');const v=selected?selected.value:'manual';return v==='official'?'官方头衔':'普通头衔'}
 function setSelectedMethod(method){const value=method==='官方头衔'?'official':'manual';const radio=document.querySelector(`input[name="method"][value="${value}"]`);if(radio) radio.checked=true}
 function resetTitleForm(){
   document.getElementById('titleName').value='';
@@ -297,7 +300,7 @@ function resetTitleForm(){
   document.getElementById('newTitleStatus').value='上架';
   const addReason=document.getElementById('addOffShelfReason'); if(addReason) addReason.value='';
   toggleAddOffShelfReason();
-  setSelectedMethod('手动发放');
+  setSelectedMethod('普通头衔');
 }
 function fillConditionsFromCond(cond){
   const rows=document.getElementById('conditionRows');
@@ -342,7 +345,7 @@ function setEditStatusActionOptions(status){
   select.innerHTML=opts;
 }
 function closeTitleModal(){document.getElementById('titleModal').classList.remove('show')}
-function configureMethodOptions(isAdd){if(isAdd){setSelectedMethod('手动发放')}}
+function configureMethodOptions(isAdd){if(isAdd){setSelectedMethod('普通头衔')}}
 function buildConditionSummary(){return '—'}
 function validateTitleForm(){
   const name=document.getElementById('titleName').value.trim();
@@ -393,7 +396,7 @@ function saveTitle(){
 function onlineTitle(id){const t=titles.find(x=>x.id===id);if(t){t.status='上架';renderTitles();toast('已上架 '+t.name)}}
 function openGrantModal(){
   populateGrantTitles();
-  document.getElementById('grantObjectType').value='单用户 UID';
+  document.getElementById('grantObjectType').value='UID 输入';
   document.getElementById('grantValidityDays').value='7';
   document.getElementById('grantUids').value='';
   document.getElementById('grantReason').value='';
@@ -405,7 +408,7 @@ function closeGrantModal(){document.getElementById('grantModal').classList.remov
 function populateGrantTitles(){
   const s=document.getElementById('grantTitleSelect');
   if(!s) return;
-  const options=titles.filter(t=>t.status==='上架'&&(t.method==='手动发放'||t.method==='官方头衔')).map(t=>`<option>${t.name}</option>`).join('');
+  const options=titles.filter(t=>t.status==='上架'&&(t.method==='普通头衔'||t.method==='官方头衔')).map(t=>`<option>${t.name}</option>`).join('');
   s.innerHTML=options||'<option>暂无可发放头衔</option>';
 }
 function nowTime(){const d=new Date();const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`}
@@ -417,7 +420,7 @@ function submitGrant(){
   const reason=document.getElementById('grantReason').value.trim();
   if(!title||title==='暂无可发放头衔'){toast('请选择头衔');return}
   if(days<=0){toast('请填写有效期天数');return}
-  if(!uids.length){toast(objectType==='Excel 导入名单'?'请先上传并解析 Excel 名单':'请填写用户 ID');return}
+  if(!uids.length){toast(objectType==='Excel 导入名单'?'请先上传并解析 Excel 名单':'请填写用户 UID');return}
   if(!reason){toast('请填写发放原因');return}
   const batch='G'+new Date().toISOString().slice(0,10).replace(/-/g,'')+String(nextGrantNo++).padStart(3,'0');
   const time=nowTime();
@@ -426,15 +429,15 @@ function submitGrant(){
   const record={batch,title,target:objectType,success:uids.length,fail:failCount,valid:days+'天',operator:'admin',time,status};
   grantRecords.unshift(record);
   const failedRows=Array.from({length:failCount},(_,i)=>[`ERR_${String(i+1).padStart(3,'0')}`,'—','失败','UID 格式异常 / 用户不存在',time]);
-  grantDetails[batch]={title,status,users:[...uids.map((uid,i)=>[uid,`User_${uid.slice(-4)}`,'成功','—',time]),...failedRows]};
+  grantDetails[batch]={title,status,reason,users:[...uids.map((uid,i)=>[uid,`User_${uid.slice(-4)}`,'成功','—',time]),...failedRows]};
   const t=titles.find(x=>x.name===title);
   if(t){const old=String(t.own).replace(/,/g,'');const n=isNaN(Number(old))?0:Number(old);t.own=(n+uids.length).toLocaleString('en-US')}
   closeGrantModal();renderGrantRows();renderTitles();toast('发放批次已创建，Excel 校验结果已进入详情')
 }
-function openGrantDetail(batch){const d=grantDetails[batch]||grantDetails['G20260611001'];document.getElementById('detailBatch').value=batch;document.getElementById('detailTitle').value=d.title;document.getElementById('detailStatus').value=d.status;document.getElementById('grantDetailTitle').textContent='发放详情 · '+batch;document.getElementById('grantUserRows').innerHTML=d.users.map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td><td><span class="pill ${u[2]==='成功'?'online':'offline'}">${u[2]}</span></td><td>${u[3]}</td><td>${u[4]}</td></tr>`).join('');document.getElementById('grantDetailModal').classList.add('show')}
+function openGrantDetail(batch){const d=grantDetails[batch]||grantDetails['G20260611001'];document.getElementById('detailBatch').value=batch;document.getElementById('detailTitle').value=d.title;document.getElementById('detailStatus').value=d.status;document.getElementById('detailReason').value=d.reason||'—';document.getElementById('grantDetailTitle').textContent='发放详情 · '+batch;document.getElementById('grantUserRows').innerHTML=d.users.map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td><td><span class="pill ${u[2]==='成功'?'online':'offline'}">${u[2]}</span></td><td>${u[3]}</td><td>${u[4]}</td></tr>`).join('');document.getElementById('grantDetailModal').classList.add('show')}
 function closeGrantDetail(){document.getElementById('grantDetailModal').classList.remove('show')}
 function toggleGrantObjectMode(){
-  const type=document.getElementById('grantObjectType')?.value||'单用户 UID';
+  const type=document.getElementById('grantObjectType')?.value||'UID 输入';
   const uidArea=document.getElementById('uidArea');
   const excelBlock=document.getElementById('excelImportBlock');
   if(uidArea) uidArea.classList.toggle('hidden',type==='Excel 导入名单');
